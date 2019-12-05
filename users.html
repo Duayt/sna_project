@@ -1,0 +1,105 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 100%;
+            height: 1000px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "blue", "id": "/niyomsaeiiw", "label": "\u0e19\u0e34\u0e22\u0e21 \u0e41\u0e0b\u0e48\u0e25\u0e34\u0e48\u0e27", "shape": "dot", "title": "\u0e19\u0e34\u0e22\u0e21 \u0e41\u0e0b\u0e48\u0e25\u0e34\u0e48\u0e27", "value": 198}, {"color": "blue", "id": "/apinan.sawasdiwong.7", "label": "Apinan Sawasdiwong", "shape": "dot", "title": "Apinan Sawasdiwong", "value": 195}, {"color": "blue", "id": "/omosoldier", "label": "\u0e2a\u0e38\u0e23\u0e28\u0e31\u0e01\u0e14\u0e34\u0e4c \u0e27\u0e38\u0e12\u0e34\u0e22\u0e32", "shape": "dot", "title": "\u0e2a\u0e38\u0e23\u0e28\u0e31\u0e01\u0e14\u0e34\u0e4c \u0e27\u0e38\u0e12\u0e34\u0e22\u0e32", "value": 155}, {"color": "blue", "id": "/profile.php?id=100010952430811", "label": "\u0e27\u0e23\u0e23\u0e13\u0e34\u0e01\u0e32 \u0e07\u0e32\u0e21\u0e02\u0e33", "shape": "dot", "title": "\u0e27\u0e23\u0e23\u0e13\u0e34\u0e01\u0e32 \u0e07\u0e32\u0e21\u0e02\u0e33", "value": 150}, {"color": "blue", "id": "/sarayut.pootong.7", "label": "\u0e22\u0e34\u0e48\u0e07\u0e2a\u0e39\u0e07 \u0e22\u0e34\u0e48\u0e07\u0e2b\u0e19\u0e32\u0e27 \u0e41\u0e15\u0e48\u0e22\u0e34\u0e48\u0e07\u0e40\u0e2b\u0e47\u0e19", "shape": "dot", "title": "\u0e22\u0e34\u0e48\u0e07\u0e2a\u0e39\u0e07 \u0e22\u0e34\u0e48\u0e07\u0e2b\u0e19\u0e32\u0e27 \u0e41\u0e15\u0e48\u0e22\u0e34\u0e48\u0e07\u0e40\u0e2b\u0e47\u0e19", "value": 138}, {"color": "blue", "id": "/kamoltip.lengpanich.52", "label": "Lengpanich Nancy", "shape": "dot", "title": "Lengpanich Nancy", "value": 131}, {"color": "blue", "id": "/profile.php?id=100004672876757", "label": "Soontharee Muangngernsoon", "shape": "dot", "title": "Soontharee Muangngernsoon", "value": 129}, {"color": "blue", "id": "/profile.php?id=100012289384465", "label": "\u0e19\u0e49\u0e2d\u0e07\u0e2d\u0e32\u0e23\u0e4c\u0e21 \u0e2a\u0e38\u0e14\u0e2b\u0e25\u0e48\u0e2d", "shape": "dot", "title": "\u0e19\u0e49\u0e2d\u0e07\u0e2d\u0e32\u0e23\u0e4c\u0e21 \u0e2a\u0e38\u0e14\u0e2b\u0e25\u0e48\u0e2d", "value": 129}, {"color": "blue", "id": "/poopae.poopae.9889", "label": "Poopae Prompim", "shape": "dot", "title": "Poopae Prompim", "value": 124}, {"color": "blue", "id": "/profile.php?id=100005004823908", "label": "Pachirawat Janthong", "shape": "dot", "title": "Pachirawat Janthong", "value": 124}, {"color": "blue", "id": "/profile.php?id=100010062134009", "label": "Nipha Thamna", "shape": "dot", "title": "Nipha Thamna", "value": 106}, {"color": "blue", "id": "/at.pn.14", "label": "At Pn", "shape": "dot", "title": "At Pn", "value": 105}, {"color": "blue", "id": "/profile.php?id=100023725447664", "label": "Sutanit Nacket", "shape": "dot", "title": "Sutanit Nacket", "value": 105}, {"color": "blue", "id": "/Toe.RovProPlayer", "label": "\u0e2d\u0e19\u0e38\u0e20\u0e32\u0e1e \u0e2d\u0e34\u0e19\u0e17\u0e23\u0e17\u0e31\u0e15", "shape": "dot", "title": "\u0e2d\u0e19\u0e38\u0e20\u0e32\u0e1e \u0e2d\u0e34\u0e19\u0e17\u0e23\u0e17\u0e31\u0e15", "value": 101}, {"color": "blue", "id": "/profile.php?id=100011922285939", "label": "\u0e21\u0e14\u0e40\u0e2d\u0e4a\u0e01 \u0e20\u0e39\u0e1c\u0e32", "shape": "dot", "title": "\u0e21\u0e14\u0e40\u0e2d\u0e4a\u0e01 \u0e20\u0e39\u0e1c\u0e32", "value": 101}, {"color": "blue", "id": "/sirichai.woraput", "label": "Sirichai Woraput", "shape": "dot", "title": "Sirichai Woraput", "value": 101}, {"color": "blue", "id": "/profile.php?id=100023882014447", "label": "\u0e44\u0e21\u0e48\u0e2d\u0e22\u0e39\u0e48\u0e02\u0e49\u0e32\u0e07\u0e44\u0e21\u0e48\u0e43\u0e0a\u0e48\u0e27\u0e48\u0e32\u0e44\u0e21\u0e48 \u0e40\u0e18\u0e2d", "shape": "dot", "title": "\u0e44\u0e21\u0e48\u0e2d\u0e22\u0e39\u0e48\u0e02\u0e49\u0e32\u0e07\u0e44\u0e21\u0e48\u0e43\u0e0a\u0e48\u0e27\u0e48\u0e32\u0e44\u0e21\u0e48 \u0e40\u0e18\u0e2d", "value": 100}, {"color": "blue", "id": "/profile.php?id=100016499884145", "label": "\u0e44\u0e1e\u0e23\u0e08\u0e34\u0e15\u0e23 \u0e18\u0e23\u0e23\u0e21\u0e42\u0e2a\u0e21", "shape": "dot", "title": "\u0e44\u0e1e\u0e23\u0e08\u0e34\u0e15\u0e23 \u0e18\u0e23\u0e23\u0e21\u0e42\u0e2a\u0e21", "value": 99}, {"color": "blue", "id": "/profile.php?id=100017733883196", "label": "Worrapot Jumpapho", "shape": "dot", "title": "Worrapot Jumpapho", "value": 98}, {"color": "blue", "id": "/wongchai.seangram", "label": "Wongchai Seangram", "shape": "dot", "title": "Wongchai Seangram", "value": 97}, {"color": "blue", "id": "/sakda.saengnuan.96", "label": "Sakda Saengnuan", "shape": "dot", "title": "Sakda Saengnuan", "value": 96}, {"color": "blue", "id": "/profile.php?id=100034314500681", "label": "\u0e2d\u0e20\u0e34\u0e0a\u0e32\u0e15\u0e34 \u0e1b\u0e23\u0e30\u0e17\u0e38\u0e21\u0e1e\u0e31\u0e19\u0e18\u0e4c", "shape": "dot", "title": "\u0e2d\u0e20\u0e34\u0e0a\u0e32\u0e15\u0e34 \u0e1b\u0e23\u0e30\u0e17\u0e38\u0e21\u0e1e\u0e31\u0e19\u0e18\u0e4c", "value": 94}, {"color": "blue", "id": "/profile.php?id=100041602067276", "label": "\u0e27\u0e31\u0e19\u0e0a\u0e31\u0e22 \u0e17\u0e34\u0e1e\u0e22\u0e4c\u0e41\u0e2a\u0e07", "shape": "dot", "title": "\u0e27\u0e31\u0e19\u0e0a\u0e31\u0e22 \u0e17\u0e34\u0e1e\u0e22\u0e4c\u0e41\u0e2a\u0e07", "value": 89}, {"color": "blue", "id": "/profile.php?id=100041408743580", "label": "\u0e2a\u0e34\u0e17\u0e18\u0e34\u0e1e\u0e23 \u0e17\u0e34\u0e28\u0e23\u0e2d\u0e14", "shape": "dot", "title": "\u0e2a\u0e34\u0e17\u0e18\u0e34\u0e1e\u0e23 \u0e17\u0e34\u0e28\u0e23\u0e2d\u0e14", "value": 86}, {"color": "blue", "id": "/profile.php?id=100006867967764", "label": "\u0e42\u0e15\u0e41\u0e25\u0e49\u0e27 \u0e42\u0e2a\u0e14\u0e01\u0e35\u0e48\u0e1b\u0e35\u0e01\u0e47\u0e44\u0e14\u0e49", "shape": "dot", "title": "\u0e42\u0e15\u0e41\u0e25\u0e49\u0e27 \u0e42\u0e2a\u0e14\u0e01\u0e35\u0e48\u0e1b\u0e35\u0e01\u0e47\u0e44\u0e14\u0e49", "value": 85}, {"color": "blue", "id": "/chaiya.chai.7927", "label": "\u0e04\u0e19\u0e42\u0e1a\u0e23\u0e32\u0e13 \u0e44\u0e0a\u0e22\u0e32 \u0e44\u0e0a\u0e22\u0e2a\u0e07\u0e04\u0e23\u0e32\u0e21", "shape": "dot", "title": "\u0e04\u0e19\u0e42\u0e1a\u0e23\u0e32\u0e13 \u0e44\u0e0a\u0e22\u0e32 \u0e44\u0e0a\u0e22\u0e2a\u0e07\u0e04\u0e23\u0e32\u0e21", "value": 84}, {"color": "blue", "id": "/profile.php?id=100004930418851", "label": "\u0e40\u0e2d\u0e01\u0e0a\u0e31\u0e22 \u0e25\u0e31\u0e48\u0e19\u0e25\u0e32", "shape": "dot", "title": "\u0e40\u0e2d\u0e01\u0e0a\u0e31\u0e22 \u0e25\u0e31\u0e48\u0e19\u0e25\u0e32", "value": 84}, {"color": "blue", "id": "/profile.php?id=100008553438581", "label": "Piyawit Boyd Oungumrung", "shape": "dot", "title": "Piyawit Boyd Oungumrung", "value": 84}, {"color": "blue", "id": "/profile.php?id=100015601201674", "label": "Wittaya Kaewprom", "shape": "dot", "title": "Wittaya Kaewprom", "value": 82}, {"color": "blue", "id": "/profile.php?id=100041450708241", "label": "\u0e2a\u0e31\u0e0d\u0e0d\u0e32\u0e25\u0e31\u0e01\u0e29\u0e13\u0e4c \u0e42\u0e21\u0e23\u0e34\u0e19\u0e17\u0e23\u0e4c", "shape": "dot", "title": "\u0e2a\u0e31\u0e0d\u0e0d\u0e32\u0e25\u0e31\u0e01\u0e29\u0e13\u0e4c \u0e42\u0e21\u0e23\u0e34\u0e19\u0e17\u0e23\u0e4c", "value": 82}, {"color": "blue", "id": "/profile.php?id=100042177541728", "label": "\u0e27\u0e35\u0e23\u0e30 \u0e25\u0e34\u0e49\u0e21\u0e1e\u0e23\u0e27\u0e34\u0e01\u0e38\u0e25", "shape": "dot", "title": "\u0e27\u0e35\u0e23\u0e30 \u0e25\u0e34\u0e49\u0e21\u0e1e\u0e23\u0e27\u0e34\u0e01\u0e38\u0e25", "value": 79}, {"color": "blue", "id": "/profile.php?id=100022159816864", "label": "Arom Thongjan", "shape": "dot", "title": "Arom Thongjan", "value": 78}, {"color": "blue", "id": "/dometipice", "label": "\u0e01\u0e47\u0e41\u0e04\u0e48\u0e04\u0e19\u0e1a\u0e49\u0e32 \u0e17\u0e35\u0e48\u0e44\u0e21\u0e48\u0e21\u0e35\u0e2d\u0e30\u0e44\u0e23\u0e08\u0e30\u0e17\u0e33", "shape": "dot", "title": "\u0e01\u0e47\u0e41\u0e04\u0e48\u0e04\u0e19\u0e1a\u0e49\u0e32 \u0e17\u0e35\u0e48\u0e44\u0e21\u0e48\u0e21\u0e35\u0e2d\u0e30\u0e44\u0e23\u0e08\u0e30\u0e17\u0e33", "value": 75}, {"color": "blue", "id": "/profile.php?id=100008938952791", "label": "\u0e2b\u0e19\u0e38\u0e48\u0e21\u0e2a\u0e01\u0e25 \u0e04\u0e19\u0e1e\u0e31\u0e17\u0e22\u0e32", "shape": "dot", "title": "\u0e2b\u0e19\u0e38\u0e48\u0e21\u0e2a\u0e01\u0e25 \u0e04\u0e19\u0e1e\u0e31\u0e17\u0e22\u0e32", "value": 75}, {"color": "blue", "id": "/profile.php?id=100009129782214", "label": "Jitwitoon Nuankaew", "shape": "dot", "title": "Jitwitoon Nuankaew", "value": 75}, {"color": "blue", "id": "/anochar.patcharat.37", "label": "\u0e2a\u0e44\u0e1b\u0e40\u0e14\u0e2d\u0e23\u0e4c \u0e41\u0e21\u0e19 \u0e19\u0e49\u0e2d\u0e22", "shape": "dot", "title": "\u0e2a\u0e44\u0e1b\u0e40\u0e14\u0e2d\u0e23\u0e4c \u0e41\u0e21\u0e19 \u0e19\u0e49\u0e2d\u0e22", "value": 74}, {"color": "blue", "id": "/profile.php?id=100035982882881", "label": "\u0e2a\u0e31\u0e21\u0e1e\u0e31\u0e19\u0e18\u0e4c \u0e0a\u0e31\u0e22\u0e2b\u0e32\u0e0d", "shape": "dot", "title": "\u0e2a\u0e31\u0e21\u0e1e\u0e31\u0e19\u0e18\u0e4c \u0e0a\u0e31\u0e22\u0e2b\u0e32\u0e0d", "value": 74}, {"color": "blue", "id": "/profile.php?id=100027488676404", "label": "\u0e1b\u0e23\u0e30\u0e2a\u0e34\u0e17\u0e18\u0e34\u0e4c \u0e1b\u0e31\u0e14\u0e17\u0e38\u0e21\u0e41\u0e27\u0e07", "shape": "dot", "title": "\u0e1b\u0e23\u0e30\u0e2a\u0e34\u0e17\u0e18\u0e34\u0e4c \u0e1b\u0e31\u0e14\u0e17\u0e38\u0e21\u0e41\u0e27\u0e07", "value": 73}, {"color": "blue", "id": "/profile.php?id=100034887375030", "label": "\u0e40\u0e23\u0e35\u0e22\u0e21 \u0e2d\u0e2d\u0e01\u0e27\u0e32\u0e23\u0e32", "shape": "dot", "title": "\u0e40\u0e23\u0e35\u0e22\u0e21 \u0e2d\u0e2d\u0e01\u0e27\u0e32\u0e23\u0e32", "value": 73}, {"color": "blue", "id": "/ched.ched.125", "label": "Ched Ched", "shape": "dot", "title": "Ched Ched", "value": 72}, {"color": "blue", "id": "/profile.php?id=100016730235415", "label": "\u0e20\u0e39\u0e20\u0e32 \u0e41\u0e01\u0e49\u0e27\u0e40\u0e23\u0e37\u0e2d\u0e19", "shape": "dot", "title": "\u0e20\u0e39\u0e20\u0e32 \u0e41\u0e01\u0e49\u0e27\u0e40\u0e23\u0e37\u0e2d\u0e19", "value": 72}, {"color": "blue", "id": "/profile.php?id=100033562630093", "label": "\u0e1a\u0e38\u0e0d\u0e23\u0e2d\u0e14 \u0e2d\u0e34\u0e19\u0e18\u0e34\u0e40\u0e14\u0e0a", "shape": "dot", "title": "\u0e1a\u0e38\u0e0d\u0e23\u0e2d\u0e14 \u0e2d\u0e34\u0e19\u0e18\u0e34\u0e40\u0e14\u0e0a", "value": 72}, {"color": "blue", "id": "/profile.php?id=100034795302993", "label": "\u0e28\u0e23\u0e41\u0e14\u0e07 \u0e08\u0e2d\u0e19\u0e2a\u0e23\u0e49\u0e2d\u0e22", "shape": "dot", "title": "\u0e28\u0e23\u0e41\u0e14\u0e07 \u0e08\u0e2d\u0e19\u0e2a\u0e23\u0e49\u0e2d\u0e22", "value": 72}, {"color": "blue", "id": "/thanasak.songta", "label": "Thanasak Songta", "shape": "dot", "title": "Thanasak Songta", "value": 71}, {"color": "blue", "id": "/profile.php?id=100008119688162", "label": "\u0e27\u0e35\u0e23\u0e1a\u0e38\u0e23\u0e38\u0e29 \u0e19\u0e32\u0e41\u0e01", "shape": "dot", "title": "\u0e27\u0e35\u0e23\u0e1a\u0e38\u0e23\u0e38\u0e29 \u0e19\u0e32\u0e41\u0e01", "value": 70}, {"color": "blue", "id": "/profile.php?id=100024593297268", "label": "\u0e1e\u0e23\u0e0a\u0e31\u0e22 \u0e44\u0e15\u0e23\u0e23\u0e07\u0e04\u0e4c", "shape": "dot", "title": "\u0e1e\u0e23\u0e0a\u0e31\u0e22 \u0e44\u0e15\u0e23\u0e23\u0e07\u0e04\u0e4c", "value": 70}, {"color": "blue", "id": "/profile.php?id=100042455450964", "label": "\u0e1a\u0e39\u0e23\u0e1e\u0e32 \u0e44\u0e21\u0e48\u0e41\u0e1e\u0e49", "shape": "dot", "title": "\u0e1a\u0e39\u0e23\u0e1e\u0e32 \u0e44\u0e21\u0e48\u0e41\u0e1e\u0e49", "value": 70}, {"color": "blue", "id": "/auff.kittipich.7", "label": "Auff Hale", "shape": "dot", "title": "Auff Hale", "value": 68}, {"color": "blue", "id": "/profile.php?id=100013786239182", "label": "\u0e40\u0e14\u0e48\u0e19\u0e0a\u0e31\u0e22 \u0e08\u0e07\u0e43\u0e08\u0e01\u0e25\u0e32\u0e07", "shape": "dot", "title": "\u0e40\u0e14\u0e48\u0e19\u0e0a\u0e31\u0e22 \u0e08\u0e07\u0e43\u0e08\u0e01\u0e25\u0e32\u0e07", "value": 68}, {"color": "blue", "id": "/profile.php?id=100024470169361", "label": "Kingkaew Phoocheunsang", "shape": "dot", "title": "Kingkaew Phoocheunsang", "value": 68}]);
+        edges = new vis.DataSet([]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
